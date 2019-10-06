@@ -1,22 +1,25 @@
 data = [
-    {
-        x: 50,
-        y: 25,
-        r: 25,
-        c: 'red'
-    },
-    {
-        x: 150,
-        y: 50,
-        r: 25,
-        c: 'green'
-    },
-    {
-        x: 250,
-        y: 75,
-        r: 25,
-        c: 'blue'
-    }
+  {
+    id: "before1",
+    x: 50,
+    y: 25,
+    r: 25,
+    c: "red"
+  },
+  {
+    id: "before2",
+    x: 150,
+    y: 50,
+    r: 25,
+    c: "green"
+  },
+  {
+    id: "before3",
+    x: 250,
+    y: 75,
+    r: 25,
+    c: "blue"
+  }
 ];
 
 var canvas = d3.select('#canvas');
@@ -41,30 +44,36 @@ circles
 
 //change the first circle on click
 button.onclick = function () {
-    // change coordinates of the first circle:
-    data[0].x = 50;
-    data[0].y = 100;
-    data[1].x = 150;
-    data[1].y = 100;
 
-    // add a new circle:
-    data.push({
-        x: 300,
-        y: 50,
-        r: 15,
-        c: 'magenta'
-    });
-
-    data.push({
-        x: 400,
-        y: 70,
-        r: 25,
-        c: 'lightblue'
-    });
+    data = [
+        {
+            id: "before1",
+            x: 50,
+            y: 25,
+            r: 25,
+            c: "red"
+        },
+        {
+            id: "before2",
+            x: 150,
+            y: 50,
+            r: 25,
+            c: "green"
+        },
+        {
+            id: "before3",
+            x: 250,
+            y: 75,
+            r: 25,
+            c: "blue"
+        }
+    ];
 
     var circles = canvas
         .selectAll('circle')
-        .data(data);
+        .data(data, function (d) {
+            return d.id;
+        });
 
     circles
         .enter()
