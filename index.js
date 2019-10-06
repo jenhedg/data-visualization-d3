@@ -55,6 +55,13 @@ button.onclick = function () {
         c: 'magenta'
     });
 
+    data.push({
+        x: 400,
+        y: 70,
+        r: 25,
+        c: 'lightblue'
+    });
+
     var circles = canvas
         .selectAll('circle')
         .data(data);
@@ -62,8 +69,6 @@ button.onclick = function () {
     circles
         .enter()
         .append('circle')
-
-        // set attributes as before...
         .attr('cx', function (d) {
             return d.x;
         })
@@ -73,10 +78,22 @@ button.onclick = function () {
         .attr('fill', function (d) {
             return d.c;
         })
+        .attr('r', 0)
+        // start transition:
+        .transition()
         .attr('r', function (d) {
             return d.r;
         });
 
+        // update (x,y) coordinates:
+        circles
+        .attr('cx', function (d) {
+            return d.x;
+        })
+        .attr('cy', function (d) {
+            return d.y;
+        });
+        
     circles
         .exit()
         .remove();
