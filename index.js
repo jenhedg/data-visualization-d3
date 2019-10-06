@@ -69,6 +69,7 @@ button.onclick = function () {
     circles
         .enter()
         .append('circle')
+        .transition()
         .attr('cx', function (d) {
             return d.x;
         })
@@ -92,6 +93,14 @@ button.onclick = function () {
         })
         .attr('cy', function (d) {
             return d.y;
+        })
+        .each('end', function (d) {
+            // transition 2:
+            d3.select(this)
+                .transition()
+                .attr('r', function (d) {
+                    return d.r;
+                });
         });
         
     circles
